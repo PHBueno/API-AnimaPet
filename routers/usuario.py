@@ -46,7 +46,9 @@ async def lista_usuarios():
 
 @router.get("/user/{id_usuario}", tags=['usuario'])
 async def busca_usuario(id_usuario: int):
-    return user.busca_usuario_byid(id_usuario)
+    usuario = user.busca_usuario_byid(id_usuario)
+    if not usuario:
+        return {"msg": "Usuário não encontrado"}
 
 @router.delete("/user/{id_usuario}", tags=['usuario'])
 async def deleta_usuario(id_usuario: int):

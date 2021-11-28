@@ -1,3 +1,6 @@
+from typing import Literal
+
+
 class User():
     """
     Classe responsável por todas as operações envolvendo usuários
@@ -24,15 +27,15 @@ class User():
             return False
         return (self.db)
 
-    def busca_usuario_byid(self, id) -> dict:
+    def busca_usuario_byid(self, id):
         user = dict()
         for i in self.db:
             if i['id'] == id:
                 user = {"username": i['username'], "email": i['email']}
                 return (user)
-        return {"msg": "Usuário não encontrado"}
+        return False
     
-    def deleta_usuario_byid(self, id):
+    def deleta_usuario_byid(self, id) -> bool:
         for i in range(len(self.db)):
             if self.db[i]['id'] == id:
                 del self.db[i]
