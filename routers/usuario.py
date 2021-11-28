@@ -21,9 +21,17 @@ user = User(fakeDB)
 @router.post("/user", tags=['usuario'])
 async def cria_usuario(novo_usuario: NovoUsuario):
     try:
+        # senha criptografada
         hash_password = bcrypt.hashpw(novo_usuario.password.encode('utf-8'), bcrypt.gensalt())
-        user.adiciona(novo_usuario.username, hash_password, novo_usuario.email)
+
+        # Retorna True ou False
+        created = user.adiciona(novo_usuario.username, hash_password, novo_usuario.email)
+
+        if not created:
+            return {"msg": "Usuário já existe"}
+
         return {"msg": "Usuário criado"}
+
     except Exception as e:
         logging.error(f"{e}")
         return {"msg": "Problema para criar usuário"}
@@ -31,10 +39,11 @@ async def cria_usuario(novo_usuario: NovoUsuario):
 
 @router.get("/user", tags=['usuario'])
 async def lista_usuarios():
-    logging.info(user.exibir_todos())
+    if not user.exibir_todos():
+        return {"msg": "Nenhum usuário encontrado"}
     return user.exibir_todos()
 
 
 @router.get("/user/{id_usuario}", tags=['usuario'])
 async def busca_usuario(id_usuario: int):
-    return user.busca_usuario(id_usuario)
+    return user.busca_usuario_id(id_usuario)
