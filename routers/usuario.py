@@ -2,7 +2,6 @@ from fastapi import APIRouter
 from pydantic import BaseModel
 
 import bcrypt
-
 import logging
 
 # INTERNAL
@@ -24,7 +23,6 @@ async def cria_usuario(novo_usuario: NovoUsuario):
     try:
         hash_password = bcrypt.hashpw(novo_usuario.password.encode('utf-8'), bcrypt.gensalt())
         user.adiciona(novo_usuario.username, hash_password, novo_usuario.email)
-        # fakeDB.append({"username": novo_usuario.username, "password": hash_password, "email": novo_usuario.email})
         return {"msg": "Usuário criado"}
     except Exception as e:
         logging.error(f"{e}")
@@ -37,3 +35,6 @@ async def lista_usuarios():
     return user.exibir_todos()
 
 
+@router.get("/user/{id_usuario}", tags=['usuario'])
+async def busca_usuario(id_usuario: int):
+    return user.busca_usuario(id_usuario)
