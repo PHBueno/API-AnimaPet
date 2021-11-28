@@ -1,5 +1,5 @@
 from fastapi import FastAPI
-from routers import animal
+from routers import animal, usuario
 
 app = FastAPI(
     title="AnimaPet",
@@ -13,6 +13,11 @@ def root():
 
 app.include_router(
     animal.router,
+    responses={404: {"description": "Not found"}},
+)
+
+app.include_router(
+    usuario.router,
     responses={404: {"description": "Not found"}},
 )
 
