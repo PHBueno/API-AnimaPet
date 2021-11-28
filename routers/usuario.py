@@ -46,4 +46,8 @@ async def lista_usuarios():
 
 @router.get("/user/{id_usuario}", tags=['usuario'])
 async def busca_usuario(id_usuario: int):
-    return user.busca_usuario_id(id_usuario)
+    return user.busca_usuario_byid(id_usuario)
+
+@router.delete("/user/{id_usuario}", tags=['usuario'])
+async def deleta_usuario(id_usuario: int):
+    user.deleta_usuario_byid(id_usuario)
