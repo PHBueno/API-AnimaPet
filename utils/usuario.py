@@ -1,4 +1,3 @@
-
 class User():
     """
     Classe responsável por todas as operações envolvendo usuários
@@ -12,12 +11,17 @@ class User():
             if i['username'] == username:
                 return False
         return True
+
+    def __generate_id(self):
+        if len(self.db) == 0:
+            return 1
+        return (self.db[len(self.db) -1 ]['id']) + 1
     
     def adiciona(self, username, password, email) -> bool:
-        id = len(self.db)
         if not self.__user_exists(username):
             return False
-        self.db.append({"id": id+1, "username": username, "password": password, "email": email})
+        id = self.__generate_id()
+        self.db.append({"id": id, "username": username, "password": password, "email": email})
         return True
         
     def exibir_todos(self):
