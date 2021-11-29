@@ -7,11 +7,13 @@ import logging
 # INTERNAL
 from utils.usuario import User
 
+# Formulário para a inserção de novos usuarios
 class NovoUsuario(BaseModel):
     username: str
     password: str
     email: str
 
+# Formulário para a atualização de novos usuários
 class AtualizaUsuario(BaseModel):
     username: str
     email: str
@@ -39,12 +41,13 @@ async def cria_usuario(novo_usuario: NovoUsuario):
         return {"msg": "Usuário criado"}
 
     except Exception as e:
-        logging.error(f"{e}")
+        logging.error(f"  ERROR: {e}")
         return {"msg": "Problema para criar usuário"}
         
 
 @router.get("/user", tags=['usuario'])
 async def lista_usuarios():
+
     if not user.exibir_todos():
         return {"msg": "Nenhum usuário encontrado"}
     return user.exibir_todos()
