@@ -7,10 +7,19 @@ import logging
 # INTERNAL
 from utils.usuario import User
 
+# Formulário para a inserção de novos usuarios
+
 
 class NovoUsuario(BaseModel):
     username: str
     password: str
+    email: str
+
+# Formulário para a atualização de novos usuários
+
+
+class AtualizaUsuario(BaseModel):
+    username: str
     email: str
 
 
@@ -38,12 +47,13 @@ async def cria_usuario(novo_usuario: NovoUsuario):
         return {"msg": "Usuário criado"}
 
     except Exception as e:
-        logging.error(f"{e}")
+        logging.error(f"  ERROR: {e}")
         return {"msg": "Problema para criar usuário"}
 
 
 @router.get("/user", tags=['usuario'])
 async def lista_usuarios():
+
     if not user.exibir_todos():
         return {"msg": "Nenhum usuário encontrado"}
     return user.exibir_todos()
@@ -54,8 +64,21 @@ async def busca_usuario(id_usuario: int):
     usuario = user.busca_usuario_byid(id_usuario)
     if not usuario:
         return {"msg": "Usuário não encontrado"}
+    return usuario
 
 
 @router.delete("/user/{id_usuario}", tags=['usuario'])
 async def deleta_usuario(id_usuario: int):
-    user.deleta_usuario_byid(id_usuario)
+    deleta = user.deleta_usuario_byid(id_usuario)
+    if not deleta:
+        return {"msg": "Usuário não encontrado"}
+    return {"msg": "Usuário deletado com sucesso"}
+
+
+@router.put("/user/{id_usuario}", tags=['usuario'])
+async def atualiza_usuario(id_usuario: int, atualiza_usuario: AtualizaUsuario):
+    atualiza = user.atualiza_usuario(
+        id_usuario, atualiza_usuario.username, atualiza_usuario.email)
+    if not atualiza:
+        return {"msg": "Usuário não encontrado"}
+    return {"msg": "Usuário atualizado"}
