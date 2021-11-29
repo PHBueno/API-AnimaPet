@@ -12,11 +12,17 @@ class NovoUsuario(BaseModel):
     password: str
     email: str
 
+class AtualizaUsuario(BaseModel):
+    username: str
+    email: str
+
 router = APIRouter()
 
 fakeDB = []
 
 user = User(fakeDB)
+
+
 
 @router.post("/user", tags=['usuario'])
 async def cria_usuario(novo_usuario: NovoUsuario):
@@ -49,7 +55,18 @@ async def busca_usuario(id_usuario: int):
     usuario = user.busca_usuario_byid(id_usuario)
     if not usuario:
         return {"msg": "Usuário não encontrado"}
+    return usuario
 
 @router.delete("/user/{id_usuario}", tags=['usuario'])
 async def deleta_usuario(id_usuario: int):
-    user.deleta_usuario_byid(id_usuario)
+    deleta = user.deleta_usuario_byid(id_usuario)
+    if not deleta:
+        return {"msg": "Usuário não encontrado"}
+    return {"msg": "Usuário deletado com sucesso"}
+
+@router.put("/user/{id_usuario}", tags=['usuario'])
+async def atualiza_usuario(id_usuario: int, atualiza_usuario: AtualizaUsuario):
+    atualiza = user.atualiza_usuario(id_usuario, atualiza_usuario.username, atualiza_usuario.email)
+    if not atualiza:
+        return {"msg": "Usuário não encontrado"}
+    return {"msg": "Usuário atualizado"}

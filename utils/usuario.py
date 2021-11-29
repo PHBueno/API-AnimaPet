@@ -40,4 +40,10 @@ class User():
                 return True
         return False
     
-    
+    def atualiza_usuario(self, id, username, email):
+        for i in self.db:
+            if i['id'] == id:
+                i['username'] = username
+                i['email'] = email
+                return True
+        return False
