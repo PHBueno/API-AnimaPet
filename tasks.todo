@@ -1,0 +1,4 @@
+API:
+    Usuarios:
+        ☐ Ajustar incrementação de ID para usuários @high
+        ✔ Adicionar PUT para atualização de usuário @high @done (28/11/2021 22:04:40)
