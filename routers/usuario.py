@@ -25,7 +25,6 @@ fakeDB = []
 user = User(fakeDB)
 
 
-
 @router.post("/user", tags=['usuario'])
 async def cria_usuario(novo_usuario: NovoUsuario):
     try:
