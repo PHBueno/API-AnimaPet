@@ -4,9 +4,9 @@
 - Verifique se o python 3.9 está instalado
 - Crie um ambiente virtual (`python3.9 -m venv venv`);
 - Execute o ambiente virtual (Linux: `source venv/bin/activate`, Windows: (`.\venv\Scripts\activate`))
-- Realize as instalações das dependências (`pip install -r requirements.txt`, `pip install bcrypt`);
+- Realize as instalações das dependências (`pip install -r requirements.txt`);
 - Após instalar as dependências execute o UviCorn :) (`uvicorn main:app --reload`);
 
 ## TESTES
-- Execute o comando (`pip install behave`);
-- Para rodar os testes rode o comando (`Run behave`) no terminal;
+- Para rodar os testes NO LINUX execute (`behave`) no terminal;
+- Para rodar os testes NO WINDOWS rode o comando (`Run behave`) no terminal;

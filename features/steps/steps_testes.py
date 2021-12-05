@@ -1,5 +1,5 @@
 from re import U
-from behave import *
+from behave import given, when, then
 from utils.validador import Validador
 from utils.usuario import User
 
@@ -7,31 +7,31 @@ from utils.usuario import User
 
 
 @given('i have an e-mail {email}')
-def step_impl(context, email):
+def get_email(context, email):
     context.email = email
 
 
 @when('i validate it')
-def step_impl(context):
+def valid_email(context):
     context.result = Validador.emailEhValido(context.email)
 
 
 @then('i should get {result}')
-def step_impl(context, result):
+def assert_email(context, result):
     assert str(context.result) == result
 
 # insert user (adiciona)
 
 
 @given('i have an e-mail, password and name')
-def step_impl(context):
+def define_user_infos(context):
     context.name = "Novo usuario"
     context.email = "teste@teste.com"
     context.password = "123456"
 
 
 @when('i insert it')
-def step_impl(context):
+def insert_user_infos(context):
     fakeDB = []
     user = User(fakeDB)
     context.result = user.adiciona(
@@ -39,19 +39,19 @@ def step_impl(context):
 
 
 @then('i should have the user inserted')
-def step_impl(context):
+def assert_user_infos(context):
     assert context.result is True
 
 
 @given('i have an existent e-mail, password and name')
-def step_impl(context):
+def define_existent_infos(context):
     context.name = "Novo usuario"
     context.email = "teste@teste.com"
     context.password = "123456"
 
 
 @when('i try insert it again')
-def step_impl(context):
+def insert_existent_infos(context):
     fakeDB = [{"id": 1, "username": "Novo usuario",
                "email": "teste@teste.com", "password": "123456"}]
     user = User(fakeDB)
@@ -65,19 +65,19 @@ def step_impl(context):
 
 
 @then('i should have a fail')
-def step_impl(context):
+def assert_existent_infos(context):
     assert context.result is False
 
 
 @given('i have an incorret e-mail, password and name')
-def step_impl(context):
+def define_incorret_infos(context):
     context.name = "Novo usuario"
     context.email = "teste@teste.com"
     context.password = "123456"
 
 
 @when('i try insert the invalid user')
-def step_impl(context):
+def insert_incoret_infos(context):
     fakeDB = []
     user = User(fakeDB)
     context.name = "Novo usuario"
@@ -89,19 +89,19 @@ def step_impl(context):
 
 
 @then('i should have a fail insertion')
-def step_impl(context):
+def assert_incoret_infos(context):
     assert context.result is False
 
 # search by id (busca_usuario_byid)
 
 
 @given('i have an user id')
-def step_impl(context):
+def define_user_id(context):
     context.id = 1
 
 
 @when('i search by id')
-def step_impl(context):
+def get_userid(context):
     fakeDB = [{"id": 1, "username": "Novo usuario",
                "email": "teste@teste.com", "password": "123456"}]
     user = User(fakeDB)
@@ -110,18 +110,18 @@ def step_impl(context):
 
 
 @then('i should have the user')
-def step_impl(context):
+def assert_userid(context):
     assert context.result == {"username": "Novo usuario",
                               "email": "teste@teste.com"}
 
 
 @given('i have an user id inexistent')
-def step_impl(context):
+def define_inexistent_id(context):
     context.id = 2
 
 
 @when('i search by id inexistent')
-def step_impl(context):
+def get_inexistent_id(context):
     fakeDB = [{"id": 1, "username": "Novo usuario",
                "email": "teste@teste.com", "password": "123456"}]
     user = User(fakeDB)
@@ -130,19 +130,19 @@ def step_impl(context):
 
 
 @then('i should have fail')
-def step_impl(context):
+def assert_inexistent_id(context):
     assert context.result is False
 
 # delete user (deleta_usuario_byid)
 
 
 @given('i have an user id to delete')
-def step_impl(context):
+def define_id_to_delete(context):
     context.id = 2
 
 
 @when('i delete by id')
-def step_impl(context):
+def delete_user_id(context):
     fakeDB = [{"id": 1, "username": "Novo usuario",
                "email": "teste@teste.com", "password": "123456"},
               {"id": 2, "username": "Novo usuario 2",
@@ -153,19 +153,19 @@ def step_impl(context):
     context.searchId = user.busca_usuario_byid(context.id)
 
 
-@ then('i should the user deleted')
-def step_impl(context):
+@then('i should the user deleted')
+def assert_delete_user_id(context):
     assert context.resultDelete is True
     assert context.searchId is False
 
 
 @given('i have an inexistent user id to delete')
-def step_impl(context):
+def define_inexistent_id_delete(context):
     context.id = 4
 
 
 @when('i delete the inexistent user by id')
-def step_impl(context):
+def delete_inexistent_user(context):
     fakeDB = [{"id": 1, "username": "Novo usuario",
                "email": "teste@teste.com", "password": "123456"},
               {"id": 2, "username": "Novo usuario 2",
@@ -176,14 +176,14 @@ def step_impl(context):
 
 
 @then('i should the user deleted fail')
-def step_impl(context):
+def assert_delete_inexistent_id(context):
     assert context.result is False
 
 # listar usuários (exibir_todos)
 
 
 @when('i list all user')
-def step_impl(context):
+def list_users(context):
     fakeDB = [{"id": 1, "username": "Novo usuario",
                "email": "teste@teste.com", "password": "123456"},
               {"id": 2, "username": "Novo usuario 2",
@@ -200,7 +200,7 @@ def step_impl(context):
 
 
 @then('i should have a list with all user')
-def step_impl(context):
+def assert_all_users(context):
     assert context.result == [{"id": 1, "username": "Novo usuario",
                                "email": "teste@teste.com", "password": "123456"},
                               {"id": 2, "username": "Novo usuario 2",
@@ -214,7 +214,7 @@ def step_impl(context):
 
 
 @when('i try list all user in a empty list')
-def step_impl(context):
+def no_users_exists(context):
     fakeDB = []
     user = User(fakeDB)
 
@@ -222,5 +222,5 @@ def step_impl(context):
 
 
 @then('i should have empty list')
-def step_impl(context):
+def assert_users_empty(context):
     assert context.result == []

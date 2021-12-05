@@ -79,7 +79,10 @@ async def deleta_usuario(id_usuario: int):
 @router.put("/user/{id_usuario}", tags=['usuario'])
 async def atualiza_usuario(id_usuario: int, atualiza_usuario: AtualizaUsuario):
     atualiza = user.atualiza_usuario(
-        id_usuario, atualiza_usuario.username, atualiza_usuario.email)
+        id_usuario, 
+        atualiza_usuario.username, 
+        atualiza_usuario.email
+    )
     if not atualiza:
         return {"msg": "Usuário não encontrado"}
     return {"msg": "Usuário atualizado"}
