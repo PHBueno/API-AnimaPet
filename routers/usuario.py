@@ -1,6 +1,7 @@
 from fastapi import APIRouter
 from pydantic import BaseModel
 
+
 import bcrypt
 import logging
 
@@ -42,7 +43,7 @@ async def cria_usuario(novo_usuario: NovoUsuario):
                                 hash_password, novo_usuario.email)
 
         if not created:
-            return {"msg": "Usuário já existe"}
+            return {"msg": "Usuário já existe / email inválido"}
 
         return {"msg": "Usuário criado"}
 

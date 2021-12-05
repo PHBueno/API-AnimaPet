@@ -6,3 +6,7 @@
 - Execute o ambiente virtual (Linux: `source venv/bin/activate`, Windows: (`.\venv\Scripts\activate`))
 - Realize as instalações das dependências (`pip install -r requirements.txt`, `pip install bcrypt`);
 - Após instalar as dependências execute o UviCorn :) (`uvicorn main:app --reload`);
+
+## TESTES
+- Execute o comando (`pip install behave`);
+- Para rodar os testes rode o comando (`Run behave`) no terminal;
