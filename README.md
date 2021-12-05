@@ -13,5 +13,7 @@ O projeto foi desenvolvido em Python, utilizando o framework FastAPI para a cria
 Para a criação dos testes, foi utilizada a biblioteca [Behave](https://behave.readthedocs.io/en/stable/).
 Os arquivos de testes estão no diretório `features`.
 
-- Para rodar os testes NO LINUX execute (`behave -i <feature_file>`) no terminal;
-- Para rodar os testes NO WINDOWS rode o comando (`Run behave -i <feature_file>`) no terminal;
+- Para rodar os testes NO LINUX execute (`behave`) no terminal:
+    - Para executar as Features separadamente, execute: `behave -i features/<feature_name>`
+- Para rodar os testes NO WINDOWS rode o comando (`Run behave`) no terminal:
+    - Para executar as Features separadamente, executa: `Run behave -i features/<feature_name>`
