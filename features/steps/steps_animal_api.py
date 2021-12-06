@@ -9,6 +9,7 @@ from behave import given, when, then
 def set_url(context, url_parameter):
     context.url = url_parameter
 
+
 @given('i have the following animals to enter')
 def get_animals(context):
     context.animals = list()

@@ -103,12 +103,12 @@ def define_user_id(context):
 @when('i search by id')
 def get_userid(context):
     fakeDB = [
-    {
-        "id": 1, 
-        "username": "Novo usuario",
-        "email": "teste@teste.com", 
-        "password": "123456"
-    }]
+        {
+            "id": 1,
+            "username": "Novo usuario",
+            "email": "teste@teste.com",
+            "password": "123456"
+        }]
     user = User(fakeDB)
 
     context.result = user.busca_usuario_byid(context.id)
@@ -130,12 +130,12 @@ def define_inexistent_id(context):
 @when('i search by id inexistent')
 def get_inexistent_id(context):
     fakeDB = [
-    {
-        "id": 1, 
-        "username": "Novo usuario",
-        "email": "teste@teste.com", 
-        "password": "123456"
-    }]
+        {
+            "id": 1,
+            "username": "Novo usuario",
+            "email": "teste@teste.com",
+            "password": "123456"
+        }]
     user = User(fakeDB)
 
     context.result = user.busca_usuario_byid(context.id)
@@ -156,18 +156,18 @@ def define_id_to_delete(context):
 @when('i delete by id')
 def delete_user_id(context):
     fakeDB = [
-    {
-        "id": 1, 
-        "username": "Novo usuario",
-        "email": "teste@teste.com", 
-        "password": "123456"
-    },
-    {
-        "id": 2, 
-        "username": "Novo usuario 2",
-        "email": "teste2@teste.com", 
-        "password": "654321"
-    }]
+        {
+            "id": 1,
+            "username": "Novo usuario",
+            "email": "teste@teste.com",
+            "password": "123456"
+        },
+        {
+            "id": 2,
+            "username": "Novo usuario 2",
+            "email": "teste2@teste.com",
+            "password": "654321"
+        }]
     user = User(fakeDB)
 
     context.resultDelete = user.deleta_usuario_byid(context.id)
@@ -188,18 +188,18 @@ def define_inexistent_id_delete(context):
 @when('i delete the inexistent user by id')
 def delete_inexistent_user(context):
     fakeDB = [
-    {
-        "id": 1, 
-        "username": "Novo usuario",
-        "email": "teste@teste.com", 
-        "password": "123456"
-    },
-    {
-        "id": 2, 
-        "username": "Novo usuario 2",
-        "email": "teste2@teste.com", 
-        "password": "654321"
-    }]
+        {
+            "id": 1,
+            "username": "Novo usuario",
+            "email": "teste@teste.com",
+            "password": "123456"
+        },
+        {
+            "id": 2,
+            "username": "Novo usuario 2",
+            "email": "teste2@teste.com",
+            "password": "654321"
+        }]
     user = User(fakeDB)
 
     context.result = user.deleta_usuario_byid(context.id)
@@ -215,36 +215,36 @@ def assert_delete_inexistent_id(context):
 @when('i list all user')
 def list_users(context):
     fakeDB = [
-    {
-        "id": 1, 
-        "username": "Novo usuario",
-        "email": "teste@teste.com", 
-        "password": "123456"
-    },
-    {
-        "id": 2, 
-        "username": "Novo usuario 2",
-        "email": "teste2@teste.com", 
-        "password": "654321"
-    },
-    {
-        "id": 3, 
-        "username": "Novo usuario 2",
-        "email": "teste2@teste.com", 
-        "password": "654321"
-    },
-    {
-        "id": 4, 
-        "username": "Novo usuario 2",
-        "email": "teste2@teste.com", 
-        "password": "654321"
-    },
-    {
-        "id": 5, 
-        "username": "Novo usuario 2",
-        "email": "teste2@teste.com", 
-        "password": "654321"
-    }]
+        {
+            "id": 1,
+            "username": "Novo usuario",
+            "email": "teste@teste.com",
+            "password": "123456"
+        },
+        {
+            "id": 2,
+            "username": "Novo usuario 2",
+            "email": "teste2@teste.com",
+            "password": "654321"
+        },
+        {
+            "id": 3,
+            "username": "Novo usuario 2",
+            "email": "teste2@teste.com",
+            "password": "654321"
+        },
+        {
+            "id": 4,
+            "username": "Novo usuario 2",
+            "email": "teste2@teste.com",
+            "password": "654321"
+        },
+        {
+            "id": 5,
+            "username": "Novo usuario 2",
+            "email": "teste2@teste.com",
+            "password": "654321"
+        }]
     user = User(fakeDB)
 
     context.result = user.exibir_todos()
@@ -253,36 +253,36 @@ def list_users(context):
 @then('i should have a list with all user')
 def assert_all_users(context):
     assert context.result == [
-    {
-        "id": 1, 
-        "username": "Novo usuario",
-        "email": "teste@teste.com", 
-        "password": "123456"
-    },
-    {
-        "id": 2, 
-        "username": "Novo usuario 2",
-        "email": "teste2@teste.com", 
-        "password": "654321"
-    },
-    {
-        "id": 3, 
-        "username": "Novo usuario 2",
-        "email": "teste2@teste.com", 
-        "password": "654321"
-    },
-    {
-        "id": 4, 
-        "username": "Novo usuario 2",
-        "email": "teste2@teste.com", 
-        "password": "654321"
-    },
-    {
-        "id": 5, 
-        "username": "Novo usuario 2",
-        "email": "teste2@teste.com", 
-        "password": "654321"
-    }]
+        {
+            "id": 1,
+            "username": "Novo usuario",
+            "email": "teste@teste.com",
+            "password": "123456"
+        },
+        {
+            "id": 2,
+            "username": "Novo usuario 2",
+            "email": "teste2@teste.com",
+            "password": "654321"
+        },
+        {
+            "id": 3,
+            "username": "Novo usuario 2",
+            "email": "teste2@teste.com",
+            "password": "654321"
+        },
+        {
+            "id": 4,
+            "username": "Novo usuario 2",
+            "email": "teste2@teste.com",
+            "password": "654321"
+        },
+        {
+            "id": 5,
+            "username": "Novo usuario 2",
+            "email": "teste2@teste.com",
+            "password": "654321"
+        }]
 
 
 @when('i try list all user in a empty list')
@@ -296,3 +296,45 @@ def no_users_exists(context):
 @then('i should have empty list')
 def assert_users_empty(context):
     assert context.result == []
+
+# User update (atualiza_usuario)
+
+
+@given('i have a id and new name or email')
+def step_impl(context):
+    context.id = 1
+    context.newName = "nome usuario atualizado"
+    context.newEmail = "teste@testeatualizado.com"
+
+
+@when('i update user')
+def step_impl(context):
+    fakeDB = [{"id": 1, "username": "Novo usuario",
+               "email": "teste@teste.com", "password": "123456"}]
+    user = User(fakeDB)
+
+    context.updateResult = user.atualiza_usuario(
+        context.id, context.newName, context.newEmail)
+    context.searchResult = user.busca_usuario_byid(context.id)
+
+
+@then('i should have the user updated')
+def step_impl(context):
+    assert context.updateResult is True
+    assert context.searchResult == {"username": context.newName,
+                                    "email": context.newEmail}
+
+
+@when('i try update inexistent user')
+def step_impl(context):
+    fakeDB = [{"id": 1, "username": "Novo usuario",
+               "email": "teste@teste.com", "password": "123456"}]
+    user = User(fakeDB)
+
+    context.result = user.atualiza_usuario(
+        5, context.newName, context.newEmail)
+
+
+@then('i should have the user updated fail')
+def step_impl(context):
+    assert context.result is False

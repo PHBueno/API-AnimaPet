@@ -22,17 +22,14 @@ class User():
         return (self.db[len(self.db) - 1]['id']) + 1
 
     def adiciona(self, username, password, email) -> bool:
-        print("EATIAAAAAAAAAAAAAAAAAAAAAAAAAA")
         if not self.__user_exists(username):
             return False
         if not Validador.emailEhValido(email):
             return False
         id = self.__generate_id()
-        print("AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA")
         # Adiciona o novo dicionario na lista de usuarios
         self.db.append({"id": id, "username": username,
                        "password": password, "email": email})
-        print("EEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEE")
         return True
 
     def exibir_todos(self):

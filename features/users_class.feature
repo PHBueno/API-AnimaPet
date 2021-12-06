@@ -64,3 +64,14 @@ Scenario: run a simple to list all users
 Scenario: run a simple to list all user whan is empty
     When i try list all user in a empty list
     Then i should have empty list
+
+Scenario: run a simple to update user
+    Given i have a id and new name or email
+    When i update user
+    Then i should have the user updated    
+
+
+Scenario: run a simple to update user inexistent
+    Given i have a id and new name or email
+    When i try update inexistent user
+    Then i should have the user updated fail
