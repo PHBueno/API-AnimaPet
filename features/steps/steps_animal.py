@@ -2,7 +2,9 @@ from json import loads
 from behave import given, when, then
 from utils.animal import Animal
 
-#Scenario: Insert a new Animal
+#################################
+# Scenario: Insert a new Animal #
+#################################
 @given('i have nome and raça of Animal')
 def set_animal(context):
     context.animal = loads(context.text)
@@ -14,6 +16,7 @@ def insert_animal(context):
         context.animal['nome'], 
         context.animal['raça']
     )
+
 
 @then('the Animal should be inserted')
 def assert_animal_inserted(context):
